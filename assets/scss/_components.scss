@@ -1,72 +1,100 @@
-// assets/scss/_components.scss
 @use 'variables';
 
-.driver-card {
-    background: white;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-radius: 10px;
+// --- Estatísticas (Topo) ---
+.stat-card {
+    background: variables.$white;
+    padding: 1rem 1.5rem;
+    border-radius: variables.$radius-md;
+    box-shadow: variables.$shadow-soft;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    box-shadow: variables.$shadow;
-    border-left: 6px solid #ccc;
-    transition: variables.$transition;
+    gap: 1rem;
+    flex: 1;
+    min-width: 200px;
 
-    &:hover {
-        transform: translateY(-3px);
+    &__icon {
+        width: 48px;
+        height: 48px;
+        border-radius: variables.$radius-md;
+        background: #e2e8f0;
+        color: variables.$text-muted;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+
+        &--active {
+            background: rgba(variables.$primary-color, 0.1);
+            color: variables.$primary-color;
+        }
     }
-
-    &--available { border-left-color: variables.$available; }
-    &--busy { border-left-color: variables.$busy; }
-    &--offline { border-left-color: variables.$offline; }
 
     &__info {
         display: flex;
         flex-direction: column;
-        
-        strong { 
-            font-size: 1.1rem; 
-            color: variables.$text-color; 
-        }
-        span { 
-            font-size: 0.85rem; 
-            color: variables.$text-color; 
-        }
-    }
-
-    &__action-btn {
-        background: variables.$primary-color;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        border-radius: 5px;
-        cursor: pointer;
-        
-        &:hover { 
-            background: variables.$primary-color; 
-            opacity: 0.8; 
-        }
+        span { font-size: 0.85rem; color: variables.$text-muted; }
+        strong { font-size: 1.5rem; color: variables.$text-main; line-height: 1.2; }
     }
 }
 
-// Estilo para quando não houver resultados na busca
-#no-results {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: lighten(variables.$text-color, 30%); // Deixa o texto num tom de cinza suave
-    background: white;
-    border-radius: 10px;
-    box-shadow: variables.$shadow;
-    font-weight: 500;
-    margin-top: 1rem;
-    display: none; // Garante que comece TOTALMENTE invisível
-    
-    // Pequeno truque de UX: um ícone ou emoji antes do texto
-    &::before {
-        content: '🔍';
-        display: block;
-        font-size: 2rem;
-        margin-bottom: 10px;
+// --- Card do Motorista ---
+.driver-card {
+    background: variables.$white;
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    border-radius: variables.$radius-md;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: variables.$shadow-soft;
+    transition: variables.$transition;
+    border: 1px solid transparent;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: variables.$shadow-hover;
+        border-color: rgba(variables.$primary-color, 0.1);
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        // O novo indicador luminoso
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: block;
+        }
+        
+        .details {
+            display: flex;
+            flex-direction: column;
+            strong { font-size: 1.05rem; color: variables.$text-main; margin-bottom: 2px;}
+            span { font-size: 0.8rem; color: variables.$text-muted; display: flex; align-items: center; gap: 4px; }
+        }
+    }
+
+    // Cores dos dots baseados no status
+    &--available .status-dot { background: variables.$available; box-shadow: 0 0 0 4px rgba(variables.$available, 0.1); }
+    &--busy .status-dot { background: variables.$busy; box-shadow: 0 0 0 4px rgba(variables.$busy, 0.1); }
+    &--offline .status-dot { background: variables.$offline; }
+
+    &__action-btn {
+        background: rgba(variables.$primary-color, 0.1);
+        color: variables.$primary-color;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: variables.$radius-pill;
+        font-weight: 600;
+        cursor: pointer;
+        transition: variables.$transition;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        
+        &:hover { background: variables.$primary-color; color: variables.$white; }
     }
 }

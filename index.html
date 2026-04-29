@@ -1,48 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Fleet Tracker</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="assets/scss/main.scss">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/main.css.map">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Fleet Tracker | Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="assets/scss/main.scss" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main.css.map" />
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  </head>
+  <body>
     <div class="dashboard">
-        <header class="dashboard__header">
-            <div class="header-top">
-                <h1>Machine Fleet Tracker</h1>
-                <input type="text" id="search-input" placeholder="Buscar motorista pelo nome..." class="search-bar">
-            </div>
-            <div class="stats-container">
-                <div class="stat-card">Total: <span id="total-drivers">0</span></div>
-                <div class="stat-card">Ativos: <span id="active-drivers">0</span></div>
-            </div>
-        </header>
+      <header class="dashboard__header">
+        <div class="header-top">
+          <div class="brand">
+            <i class="ph-fill ph-steering-wheel"></i>
+            <h1>Fleet Tracker</h1>
+          </div>
 
-        <section class="map-section">
-            <div id="map"></div>
-        </section>
-
-        <section class="controls">
-            <div class="filters">
-                <button type="button" class="btn active" data-filter="all">Todos</button>
-                <button type="button" class="btn" data-filter="available">Disponíveis</button>
-                <button type="button" class="btn" data-filter="busy">Em Corrida</button>
+          <div class="search-wrapper">
+            <i class="ph ph-magnifying-glass"></i>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Buscar motorista pelo nome..."
+              class="search-bar"
+            />
+          </div>
+        </div>
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-card__icon"><i class="ph ph-users"></i></div>
+            <div class="stat-card__info">
+              <span>Total de Motoristas</span>
+              <strong id="total-drivers">0</strong>
             </div>
-        </section>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--active">
+              <i class="ph ph-car-profile"></i>
+            </div>
+            <div class="stat-card__info">
+              <span>Em Operação</span>
+              <strong id="active-drivers">0</strong>
+            </div>
+          </div>
+        </div>
+      </header>
 
-        <main class="content">
-            <div id="no-results" class="hidden">Nenhum motorista encontrado para esta busca.</div>
-            <ul class="driver-list" id="driver-list">
-                <!-- JS Render -->
-            </ul>
-        </main>
+      <section class="map-section">
+        <div id="map"></div>
+      </section>
+
+      <section class="controls">
+        <div class="filters">
+          <button type="button" class="btn active" data-filter="all">
+            Todos
+          </button>
+          <button type="button" class="btn" data-filter="available">
+            Disponíveis
+          </button>
+          <button type="button" class="btn" data-filter="busy">
+            Em Corrida
+          </button>
+        </div>
+      </section>
+
+      <main class="content">
+        <div id="no-results" class="hidden">
+          Nenhum motorista encontrado para esta busca.
+        </div>
+        <ul class="driver-list" id="driver-list"></ul>
+      </main>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="assets/js/main.js"></script>
-</body>
+  </body>
 </html>

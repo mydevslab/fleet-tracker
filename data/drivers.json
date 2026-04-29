@@ -30,5 +30,21 @@
     "last_trip": "5 min",
     "lat": -22.9000,
     "lng": -43.1790
+  },
+  {
+    "id": 5,
+    "name": "Pedro Santos",
+    "status": "busy",
+    "last_trip": "1 min",
+    "lat": -22.9100,
+    "lng": -43.1650
+  },
+  {
+    "id": 6,
+    "name": "Maria Silva",
+    "status": "offline",
+    "last_trip": "2h",
+    "lat": -22.9100,
+    "lng": -43.1650
   }
 ]

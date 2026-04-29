@@ -1,41 +1,158 @@
+// assets/scss/main.scss
 @use 'variables';
 @use 'components';
 
+// --- Base Global ---
 body {
     font-family: variables.$font-main;
     background-color: variables.$bg-color;
+    color: variables.$text-main;
     margin: 0;
+    -webkit-font-smoothing: antialiased; // Deixa a fonte mais suave e moderna
 }
 
 .dashboard {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+}
 
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
+// --- Header Moderno ---
+.dashboard__header {
+    margin-bottom: 2.5rem;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+// Logo e Título
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    i {
+        font-size: 2.2rem;
+        color: variables.$primary-color;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
     }
 }
 
-#map {
-    height: 400px;
+// Barra de Busca com Ícone Embutido
+.search-wrapper {
+    position: relative;
     width: 100%;
-    border-radius: 15px;
-    margin-bottom: 2rem;
-    box-shadow: variables.$shadow;
+    max-width: 350px;
+
+    i {
+        position: absolute;
+        left: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: variables.$text-muted;
+        font-size: 1.2rem;
+    }
 }
 
 .search-bar {
-    padding: 10px 20px;
-    border-radius: 25px;
-    border: 1px solid #ddd;
-    width: 300px;
-    
-    &:focus { 
-        outline: none;
-        border-color: variables.$primary-color; 
+    width: 100%;
+    padding: 0.85rem 1.2rem 0.85rem 2.8rem; // Espaço extra na esquerda para o ícone
+    border-radius: variables.$radius-pill;
+    border: 1px solid #e2e8f0;
+    background-color: variables.$white;
+    color: variables.$text-main;
+    font-size: 0.95rem;
+    outline: none;
+    transition: variables.$transition;
+    box-shadow: variables.$shadow-soft;
+    box-sizing: border-box;
+
+    &::placeholder {
+        color: #94a3b8;
     }
+
+    &:focus {
+        border-color: variables.$primary-color;
+        box-shadow: 0 0 0 4px rgba(variables.$primary-color, 0.15);
+    }
+}
+
+// --- Container de Status ---
+.stats-container {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+// --- Mapa ---
+.map-section {
+    margin-bottom: 2rem;
+}
+
+#map {
+    height: 420px;
+    width: 100%;
+    border-radius: variables.$radius-lg;
+    box-shadow: variables.$shadow-soft;
+    border: 1px solid #e2e8f0;
+    z-index: 1; // Mantém o mapa abaixo de possíveis modais
+}
+
+// --- Controles e Filtros ---
+.controls {
+    margin-bottom: 1.5rem;
+}
+
+.filters {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+// Botões de Aba (Pill Buttons Modernos)
+.btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: variables.$radius-pill;
+    border: 1px solid #e2e8f0;
+    background: variables.$white;
+    color: variables.$text-muted;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: variables.$transition;
+
+    &:hover {
+        background: #f8fafc;
+        color: variables.$text-main;
+        border-color: #cbd5e1;
+    }
+
+    &.active {
+        background: variables.$text-main;
+        color: variables.$white;
+        border-color: variables.$text-main;
+        box-shadow: variables.$shadow-hover;
+    }
+}
+
+// --- Área de Lista de Motoristas ---
+.driver-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); // Grade responsiva automática
+    gap: 1.5rem;
 }
