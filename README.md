@@ -1,63 +1,100 @@
-# Machine Fleet Tracker 🚖
+# 🚖 Fleet Tracker
 
-Um Dashboard interativo de Gerenciamento de Frotas desenvolvido como projeto prático para a vaga de **Desenvolvedor Frontend na Gaudium**.
+### Transformando dados de telemetria em inteligência logística
 
-Este projeto simula o núcleo do sistema *Machine*, exibindo a geolocalização de motoristas, atualizações de status em tempo real e um motor de busca de alta performance focado na Experiência do Usuário (UX).
+O **Fleet Tracker** é um dashboard interativo para monitoramento de frotas, inspirado nos desafios reais da plataforma *Machine*. Mais do que um mapa com pontos, este projeto é um exercício de como transformar fluxos complexos de dados em uma interface humana, performática e confiável.
 
-## 🚀 Funcionalidades e Diferenciais de UX
+---
 
-- **Simulação de Tempo Real (Real-Time Engine):** Um motor construído com `setInterval` que atualiza a posição (lat/lng) e o status dos motoristas a cada 3 segundos, garantindo que o recrutador veja a aplicação "viva" sem depender de APIs externas instáveis.
-- **Rastreamento de Câmera Inteligente (Camera Tracking):** Ao clicar em "Localizar", o mapa utiliza o método `flyTo` do Leaflet para um zoom cinematográfico e passa a perseguir o motorista (`panTo`) em seus movimentos.
-- **UX Avançada (Cancelamento de Rastreio):** O sistema escuta o evento `dragstart` do mapa. Se o usuário arrastar a câmera manualmente, o rastreamento é desativado para devolver o controle ao usuário.
-- **Filtro Duplo Instantâneo:** Filtragem simultânea por status (Disponível, Em Corrida, Offline) e busca textual por nome, renderizada no DOM sem atrasos.
-- **Empty States:** Feedback visual amigável quando uma busca não retorna resultados.
+## 🧭 A Visão do Projeto
 
-## 🛠️ Stack Tecnológica
+No setor de mobilidade, a precisão é fundamental, mas a **usabilidade** é o que mantém a operação rodando. Este dashboard foi construído para ser a ferramenta de um gestor que precisa de respostas rápidas.
 
-Optei por não utilizar frameworks pesados (como React ou Vue) para demonstrar domínio absoluto dos fundamentos da web e preocupação com a performance de carregamento:
+Eu foquei em três pilares:
 
-- **HTML5 Semântico**
-- **JavaScript Vanilla (ES6+):** Manipulação de DOM, Assincronismo (`fetch`, `async/await`), e gerenciamento de estado customizado (`state object`).
-- **SCSS (Sass):** Estilização modularizada. Utilização do padrão moderno `@use` com separação de responsabilidades (`_variables.scss`, `_components.scss`) e metodologia **BEM** para escalabilidade das classes.
-- **Leaflet.js:** Biblioteca open-source leve para renderização do mapa interativo.
+1. **Confiabilidade Visual:** Onde está meu motorista agora?
+2. **Fluidez:** Como navegar em mil cidades sem perder a performance?
+3. **Foco:** Como acompanhar um problema específico sem ser distraído pelo restante da frota?
 
-## 📂 Estrutura de Arquivos
+## 🛠️ O que há por "baixo do capô"?
 
-A arquitetura do projeto foi pensada para ser escalável e de fácil manutenção:
+Para garantir que a aplicação fosse leve e robusta, tomei decisões de arquitetura focadas em fundamentos:
+
+* **JavaScript ES6+ (O Motor):** Optei pelo Vanilla JS para demonstrar domínio sobre o DOM e o ciclo de vida da aplicação. Implementei um sistema de gerenciamento de estado (`state object`) que sincroniza a lista de motoristas, os filtros de busca e os marcadores do mapa em tempo real.
+* **Geolocalização com Leaflet.js:** Integrei esta biblioteca pela sua leveza. O grande desafio aqui foi criar o **Camera Tracking**: ao localizar um motorista, o mapa o persegue dinamicamente. Se o usuário interage com o mapa, o sistema entende a intenção humana e interrompe o rastreio automático.
+* **SCSS Modular (O Design System):** Estruturei o CSS usando o padrão moderno `@use` e a metodologia **BEM**. Isso significa que o código é escalável: se a frota crescer ou o branding mudar, a manutenção é feita em segundos.
+* **Experiência do Usuário (UX):** Usei a biblioteca *Phosphor Icons* para uma iconografia limpa e apliquei um design de "Status Dots" com brilho pulsante, facilitando a identificação rápida de quem está disponível ou em corrida.
+
+## 📂 Arquitetura e Estrutura do Projeto
+
+A organização do código foi pensada para separar as responsabilidades e facilitar a manutenção, seguindo padrões modernos de desenvolvimento web:
 
 ```text
-/
-├── index.html
+fleet-tracker/
+├── index.html           # Ponto de entrada (Estrutura Semântica)
 ├── data/
-│   └── drivers.json         # API Simulada / Fallback
-    ├── scss/└── assets/
-
-    │   ├── main.scss        # Root stylesheet
-    │   ├── _variables.scss  # Design System (Tokens)
-    │   └── _components.scss # Padrão BEM (Ex: .driver-card)
-    ├── css/
-    │   └── main.css         # CSS Compilado gerado pelo Sass
-    └── js/
-        └── main.js          # Lógica, Estado e Mapa
+│   └── drivers.json     # Nossa "Single Source of Truth" (Dados dos Motoristas)
+├── assets/
+│   ├── js/
+│   │   └── main.js      # O "Cérebro": Estado, Lógica do Mapa e Tracking
+│   └── scss/            # Design System Modular (Sass)
+│       ├── main.scss    # Arquivo Root que orquestra os estilos
+│       ├── _variables.scss # Definição de Cores, Sombras e Tokens de Design
+│       └── _components.scss # Componentes isolados (Cards, Botões, Status)
+├── css/
+│   └── main.css         # Arquivo compilado e otimizado para o navegador
+└── README.md            # Documentação do projeto
 ```
 
-## 🔧 Como executar localmente
+## 🚀 Como testar a experiência
+
+Você pode ver o projeto rodando ao vivo aqui: [**Link do Deploy na Vercel**](https://fleet-tracker-flame.vercel.app/)
+
+Se quiser rodar localmente:
+
+1. Clone o repositório.
+2. Abra o `index.html`.
+*Nota: Implementei um sistema de fallback. Se a API de dados falhar ou houver erro de CORS local, o sistema ativa automaticamente dados simulados para que a experiência nunca seja interrompida.*
+
+## ⚙️ Execução Local e Desenvolvimento
+
+Este projeto foi estruturado para ser simples de executar, mas também oferece ferramentas para quem deseja evoluir o código.
+
+### 1. Pré-requisitos
+
+Para apenas visualizar o projeto, você só precisa de um navegador moderno. Caso deseje modificar os estilos (SCSS), você precisará do Sass instalado globalmente:
+
+```bash
+npm install -g sass
+```
+
+### 2. Passo a Passo
 
 1. Clone o repositório:
+
    ```bash
-   git clone [https://github.com/SEU-USUARIO/machine-fleet-tracker.git](https://github.com/mydevslab/gaudium-fleet-tracker.git)
+   git clone [https://github.com/SEU-USUARIO/fleet-tracker.git](https://github.com/mydevslab/fleet-tracker.git)
    ```
 
-2. Para rodar a aplicação: Basta abrir o arquivo `index.html` em qualquer navegador moderno. O sistema possui um fallback embutido no JavaScript que garante o funcionamento mesmo se a política de CORS do navegador bloquear o fetch local do JSON.
+2. Abra o projeto:
+   * Navegue até a pasta do projeto e abra o `index.html` no seu navegador preferido.
 
-3. Para editar os estilos (SCSS):
+### 3. Fluxo de Desenvolvimento (Sass)
 
-Certifique-se de ter o Sass instalado (npm install -g sass).
+O projeto utiliza a sintaxe moderna de módulos do Dart Sass. Para realizar alterações visuais, edite os arquivos na pasta assets/scss/ e compile para a pasta css/ com o comando:
 
-Rode o comando de compilação em modo watch:
 ```bash
 sass --watch assets/scss/main.scss assets/css/main.css
 ```
 
+## 📈 Evoluções Futuras
+
+Como desenvolvedora, acredito que o código nunca está "pronto", ele está em constante evolução. Para os próximos passos, eu visualizo:
+
+* Implementação de WebSockets para telemetria real sem polling.
+* Testes unitários para as funções de filtragem.
+* Modo noturno (Dark Mode) baseado na preferência do sistema do usuário.
+
 ---
-Desenvolvido com foco em escalabilidade e performance para a **Gaudium**. Feedbacks são super bem-vindos! 🚀
+
+**Desenvolvido com dedicação por Juscélia de Souza** *Interessada em como a tecnologia pode mover o mundo.*
