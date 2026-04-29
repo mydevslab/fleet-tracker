@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Ricardo Silva",
+    "status": "available",
+    "last_trip": "10 min",
+    "lat": -22.9068,
+    "lng": -43.1729
+  },
+  {
+    "id": 2,
+    "name": "Ana Oliveira",
+    "status": "busy",
+    "last_trip": "1 min",
+    "lat": -22.9035,
+    "lng": -43.1820
+  },
+  {
+    "id": 3,
+    "name": "Marcos Souza",
+    "status": "offline",
+    "last_trip": "2h",
+    "lat": -22.9100,
+    "lng": -43.1650
+  },
+  {
+    "id": 4,
+    "name": "Julia Costa",
+    "status": "available",
+    "last_trip": "5 min",
+    "lat": -22.9000,
+    "lng": -43.1790
+  }
+]

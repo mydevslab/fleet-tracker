@@ -1,0 +1,41 @@
+@use 'variables';
+@use 'components';
+
+body {
+    font-family: variables.$font-main;
+    background-color: variables.$bg-color;
+    margin: 0;
+}
+
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: variables.$shadow;
+}
+
+.search-bar {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    width: 300px;
+    
+    &:focus { 
+        outline: none;
+        border-color: variables.$primary-color; 
+    }
+}

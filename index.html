@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Fleet Tracker</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="assets/scss/main.scss">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css.map">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard__header">
+            <div class="header-top">
+                <h1>Machine Fleet Tracker</h1>
+                <input type="text" id="search-input" placeholder="Buscar motorista pelo nome..." class="search-bar">
+            </div>
+            <div class="stats-container">
+                <div class="stat-card">Total: <span id="total-drivers">0</span></div>
+                <div class="stat-card">Ativos: <span id="active-drivers">0</span></div>
+            </div>
+        </header>
+
+        <section class="map-section">
+            <div id="map"></div>
+        </section>
+
+        <section class="controls">
+            <div class="filters">
+                <button type="button" class="btn active" data-filter="all">Todos</button>
+                <button type="button" class="btn" data-filter="available">Disponíveis</button>
+                <button type="button" class="btn" data-filter="busy">Em Corrida</button>
+            </div>
+        </section>
+
+        <main class="content">
+            <div id="no-results" class="hidden">Nenhum motorista encontrado para esta busca.</div>
+            <ul class="driver-list" id="driver-list">
+                <!-- JS Render -->
+            </ul>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

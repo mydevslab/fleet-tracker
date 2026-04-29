@@ -1,0 +1,72 @@
+// assets/scss/_components.scss
+@use 'variables';
+
+.driver-card {
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: variables.$shadow;
+    border-left: 6px solid #ccc;
+    transition: variables.$transition;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+
+    &--available { border-left-color: variables.$available; }
+    &--busy { border-left-color: variables.$busy; }
+    &--offline { border-left-color: variables.$offline; }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        
+        strong { 
+            font-size: 1.1rem; 
+            color: variables.$text-color; 
+        }
+        span { 
+            font-size: 0.85rem; 
+            color: variables.$text-color; 
+        }
+    }
+
+    &__action-btn {
+        background: variables.$primary-color;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        
+        &:hover { 
+            background: variables.$primary-color; 
+            opacity: 0.8; 
+        }
+    }
+}
+
+// Estilo para quando não houver resultados na busca
+#no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: lighten(variables.$text-color, 30%); // Deixa o texto num tom de cinza suave
+    background: white;
+    border-radius: 10px;
+    box-shadow: variables.$shadow;
+    font-weight: 500;
+    margin-top: 1rem;
+    display: none; // Garante que comece TOTALMENTE invisível
+    
+    // Pequeno truque de UX: um ícone ou emoji antes do texto
+    &::before {
+        content: '🔍';
+        display: block;
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+}
