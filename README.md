@@ -73,7 +73,7 @@ npm install -g sass
 1. Clone o repositório:
 
    ```bash
-   git clone [https://github.com/SEU-USUARIO/fleet-tracker.git](https://github.com/mydevslab/fleet-tracker.git)
+   git clone https://github.com/mydevslab/fleet-tracker.git
    ```
 
 2. Abra o projeto:
